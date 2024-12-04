@@ -18,7 +18,6 @@ const Second = () => {
   const streamRef = useRef<MediaStream | null>(null);
 
   const handleSubmit = () => {
-    // Stop recording if still in progress
     stopRecording(true);
   };
 
@@ -35,7 +34,6 @@ const Second = () => {
       streamRef.current = null;
     }
 
-    // Create and potentially send blob
     const blob = new Blob(recordedChunksRef.current, { type: "video/webm" });
     recordedChunksRef.current = [];
 
@@ -70,7 +68,6 @@ const Second = () => {
   useEffect(() => {
     let countdownTimer: NodeJS.Timeout;
 
-    // Automatically start recording and countdown when recording screen appears
     const startRecordingAndCountdown = async () => {
       if (recordingStarted && !isRecording) {
         try {
@@ -102,18 +99,9 @@ const Second = () => {
 
           // Handle recording stop
           recorder.onstop = () => {
-            // Here you would typically send the recorded chunks to an API
             const blob = new Blob(recordedChunksRef.current, {
               type: "video/webm",
             });
-
-            // Example of how you might send to an API
-            // const formData = new FormData();
-            // formData.append('video', blob, 'interview-response.webm');
-            // fetch('/api/upload-interview', {
-            //   method: 'POST',
-            //   body: formData
-            // });
           };
 
           // Start recording
@@ -126,7 +114,7 @@ const Second = () => {
             setTimeLeft((prev) => {
               if (prev <= 1) {
                 clearInterval(countdownTimer);
-                stopRecording(); // Auto stop when time runs out
+                stopRecording(); 
                 return 0;
               }
               return prev - 1;
@@ -174,7 +162,6 @@ const Second = () => {
           <div className="bg-gray-800 p-4 rounded-md">
             <p className="text-lg mb-4">Time Left: {timeLeft} seconds</p>
 
-            {/* Video preview */}
             <video
               ref={videoRef}
               autoPlay
