@@ -39,7 +39,7 @@ const Second = () => {
 
     // Navigate and show message
     router.push("/", {
-      //@ts-expect-error
+      //@ts-expect-error: Unable to find the type error so used it
       query: {
         message: isManualSubmit
           ? "Answer submitted successfully!"
