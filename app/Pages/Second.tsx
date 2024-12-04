@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 const Second = () => {
   const router = useRouter();
-  const [question,] = useState("Introduce yourself");
+  const [question] = useState("Introduce yourself");
   const [showLoader, setShowLoader] = useState(false);
   const [recordingStarted, setRecordingStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
@@ -114,7 +114,7 @@ const Second = () => {
             setTimeLeft((prev) => {
               if (prev <= 1) {
                 clearInterval(countdownTimer);
-                stopRecording(); 
+                stopRecording();
                 return 0;
               }
               return prev - 1;

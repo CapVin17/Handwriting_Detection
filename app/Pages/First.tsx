@@ -11,7 +11,7 @@ import VideoRecorder from "../components/VideoRecorder";
 const First = () => {
   const router = useRouter();
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(0); // Set initial value to 0
   const [permissions, setPermissions] = useState({
     camera: false,
     microphone: false,
@@ -22,15 +22,20 @@ const First = () => {
 
   const [startClicked, setStartClicked] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [,setPermissionAttempts] = useState(0);
+  const [, setPermissionAttempts] = useState(0);
 
   useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
+    // Ensure code runs only in the browser
+    if (typeof window !== "undefined") {
+      setScreenWidth(window.innerWidth); // Set screen width once the component is mounted
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+      const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, []);
 
   const resetPermissions = () => {
@@ -70,7 +75,7 @@ const First = () => {
         }));
       }, 500);
 
-      // Screen Share 
+      // Screen Share
       try {
         const screenStream = await navigator.mediaDevices.getDisplayMedia({
           video: true,
@@ -84,7 +89,7 @@ const First = () => {
         console.error("Screen share permission failed:", screenErr);
       }
 
-      // Audio 
+      // Audio
       const audioStream = await navigator.mediaDevices.getUserMedia({
         audio: true,
       });
