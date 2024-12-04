@@ -39,7 +39,7 @@ const Second = () => {
 
     // Navigate and show message
     router.push("/", {
-      //@ts-ignore
+      //@ts-expect-error
       query: {
         message: isManualSubmit
           ? "Answer submitted successfully!"
