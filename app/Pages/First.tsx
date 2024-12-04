@@ -22,7 +22,7 @@ const First = () => {
 
   const [startClicked, setStartClicked] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [permissionAttempts, setPermissionAttempts] = useState(0);
+  const [,setPermissionAttempts] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {

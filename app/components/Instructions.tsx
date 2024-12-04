@@ -29,7 +29,7 @@ const Instructions: FC<InstructionsProps> = ({ startClicked, permissions }) => {
           </li>
           <li>
             <span className="mr-2">{permissions.audioCheck ? "✔" : "❌"}</span>
-            Say "Hello" for Audio Check
+            Say &quot;Hello&quot; for Audio Check
           </li>
           <li>
             <span className="mr-2">{permissions.speaker ? "✔" : "❌"}</span>
@@ -58,7 +58,7 @@ const Instructions: FC<InstructionsProps> = ({ startClicked, permissions }) => {
           Give a detailed response, providing as much information as possible.
         </li>
         <li>
-          Answer the question with examples and projects you've worked on.
+          Answer the question with examples and projects you&apos;ve worked on.
         </li>
       </ul>
     </div>

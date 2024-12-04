@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 const Second = () => {
   const router = useRouter();
-  const [question, setQuestion] = useState("Introduce yourself");
+  const [question,] = useState("Introduce yourself");
   const [showLoader, setShowLoader] = useState(false);
   const [recordingStarted, setRecordingStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
@@ -34,7 +34,7 @@ const Second = () => {
       streamRef.current = null;
     }
 
-    const blob = new Blob(recordedChunksRef.current, { type: "video/webm" });
+    new Blob(recordedChunksRef.current, { type: "video/webm" });
     recordedChunksRef.current = [];
 
     // Navigate and show message
@@ -99,7 +99,7 @@ const Second = () => {
 
           // Handle recording stop
           recorder.onstop = () => {
-            const blob = new Blob(recordedChunksRef.current, {
+            new Blob(recordedChunksRef.current, {
               type: "video/webm",
             });
           };
